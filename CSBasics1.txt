@@ -176,3 +176,63 @@ def csRemoveTheVowels(input_str):
     return input_str
 
 *********** CODE ***************
+
+Given a start integer and an ending integer (both inclusive), write a function that returns the count (not the sum) of all integers in the range (except integers that contain the digit 5).
+
+Examples:
+
+csAnythingButFive(1, 5) -> 1, 2, 3, 4, -> 4 (there are 4 integers in the range that do not contain the digit 5)
+csAnythingButFive(1, 9) -> 1, 2, 3, 4, 6, 7, 8, 9 -> 8
+csAnythingButFive(4, 17) -> 4,6,7,8,9,10,11,12,13,14,16,17 -> 12
+Notes:
+
+The output can contain the digit 5.
+The start number will always be less than the end number (both numbers can also be negative).
+
+*********** CODE ***************
+
+def csAnythingButFive(start, end):
+    x = range(start, end + 1)
+    counter = 0
+    for i in x:
+        if "5" not in str(i):
+            counter += 1
+    return counter
+
+*********** CODE ***************
+
+Given an array of integers, return the sum of all the positive integers in the array.
+
+Examples:
+
+csSumOfPositive([1, 2, 3, -4, 5]) -> 1 + 2 + 3 + 5 = 11
+csSumOfPositive([-3, -2, -1, 0, 1]) -> 1
+csSumOfPositive([-3, -2]) -> 0
+Notes:
+
+If the input_arr does not contain any positive integers, the default sum should be 0.
+
+*********** CODE ***************
+
+def csSumOfPositive(input_arr):
+    runningTotal = 0
+    for x in input_arr:
+        if x > 0:
+            runningTotal = runningTotal + x
+    return runningTotal
+
+*********** CODE ***************
+
+Given a string of words, return the length of the shortest word(s).
+
+Notes:
+
+The input string will never be empty and you do not need to validate for different data types.
+
+*********** CODE ***************
+
+def csShortestWord(input_str):
+    x = list(map(len, input_str.split()))
+    return min(x)
+
+*********** CODE ***************
