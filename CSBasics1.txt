@@ -433,21 +433,95 @@ def validParenthesesSequence(s):
 
 *********** CODE ***************
 
-*********** CODE ***************
+Given a string (the input will be in the form of an array of characters), write a function that returns the reverse of the given string.
 
+Examples:
 
-
-*********** CODE ***************
-
-*********** CODE ***************
-
-
+csReverseString(["l", "a", "m", "b", "d", "a"]) -> ["a", "d", "b", "m", "a", "l"]
+csReverseString(["I", "'", "m", " ", "a", "w", "e", "s", "o", "m", "e"]) -> ["e", "m", "o", "s", "e", "w", "a", " ", "m", "'", "I"]
 
 *********** CODE ***************
 
+def csReverseString(chars):
+    reversedString = chars[::-1]
+    return reversedString
+
 *********** CODE ***************
 
+A palindrome is a word, phrase, number, or another sequence of characters that reads the same backward or forward. This includes capital letters, punctuation, and other special characters.
 
+Given a string, write a function that checks if the input is a valid palindrome.
+
+Examples:
+
+csCheckPalindrome("racecar") -> true
+csCheckPalindrome("anna") -> true
+csCheckPalindrome("12345") -> false
+csCheckPalindrome("12321") -> true
+
+*********** CODE ***************
+
+def csCheckPalindrome(input_str):
+    return input_str == input_str[::-1]
+    
+            ***OR***
+            
+def csCheckPalindrome(input_str):
+    firstChar = 0
+    lastChar = len(input_str) - 1
+    isPalindrome = True
+    for i in range(len(input_str)) :
+        firstChar = firstPos(input_str, firstChar, lastChar);
+        lastChar = lastPos(input_str, lastChar, firstChar);
+        if (lastChar < 0 or firstChar < 0):
+            break
+        if (input_str[firstChar] == input_str[lastChar]):
+            firstChar += 1
+            lastChar -= 1
+            continue
+        isPalindrome = False
+        break  
+    return isPalindrome
+    
+# Helper function to get the position of first character in the string
+def firstPos(input_str, start, end):
+    firstChar = -1
+    for i in range(start, end + 1):
+        if (input_str[i] >= 'a' and input_str[i] <= 'z') :
+            firstChar = i
+            break  
+    return firstChar
+
+# Helper function to get the position of last character in the string
+def lastPos(input_str, start, end):  
+    lastChar = -1  
+    for i in range(start, end - 1, -1) :
+        if (input_str[i] >= 'a' and input_str[i] <= 'z') :
+            lastChar = i
+            break  
+    return lastChar
+
+*********** CODE ***************
+
+Given a string, write a function that removes all duplicate words from the input. The string that you return should only contain the first occurrence of each word in the string.
+
+Examples:
+
+`csRemoveDuplicateWords("alpha bravo bravo golf golf golf delta alpha bravo bravo golf golf golf delta") -> "alpha bravo golf delta"
+`csRemoveDuplicateWords("my dog is my dog is super smart") -> "my dog is super smart"
+
+*********** CODE ***************
+
+def csRemoveDuplicateWords(input_str):
+    input_str = input_str.split()
+    unique = []
+    
+    for word in input_str:
+        if word not in unique:
+            unique.append(word)
+    input_str = " ".join(unique)
+    
+    return input_str
 
 *********** CODE ***************
 
