@@ -524,22 +524,91 @@ def csRemoveDuplicateWords(input_str):
     return input_str
 
 *********** CODE ***************
+Given an integer, write a function that reverses the bits (in binary) and returns the integer result.
 
+Examples:
+
+csReverseIntegerBits(417) -> 267
+417 in binary is 110100001. Reversing the binary is 100001011, which is 267 in decimal.
+csReverseIntegerBits(267) -> 417
+csReverseIntegerBits(0) -> 0
+
+Notes:
+The input integer will not be negative.
 *********** CODE ***************
 
-
+def csReverseIntegerBits(n):
+    reversed = 0
+    while(n > 0):
+        reversed = reversed << 1
+        if ( n & 1 == 1):
+            reversed = reversed ^ 1
+        n = n >> 1
+    return reversed
 
 *********** CODE ***************
+Given a binary string (ASCII encoded), write a function that returns the equivalent decoded text.
 
+Every eight bits in the binary string represents one character on the ASCII table.
+
+Examples:
+csBinaryToASCII("011011000110000101101101011000100110010001100001") -> "lambda"
+01101100 -> 108 -> "l"
+01100001 -> 97 -> "a"
+01101101 -> 109 -> "m"
+01100010 -> 98 -> "b"
+01100100 -> 100 -> "d"
+01100001 -> 97 -> "a"
+csBinaryToASCII("") -> ""
+
+Notes:
+The input string will always be a valid binary string.
+Characters can be in the range from "00000000" to "11111111" (inclusive).
+In the case of an empty input string, your function should return an empty string.
 *********** CODE ***************
 
-
+def csBinaryToASCII(binary):
+    binary_letters = []
+    letters = ''
+    if binary == "":
+        return ""
+    for index in range(0, len(binary), 8):
+        binary_letters.append(binary[index : index + 8])
+    for string in binary_letters:
+        binary_int = v = chr(int(string, 2))
+        letters += binary_int
+    return letters
 
 *********** CODE ***************
+Given a number, write a function that converts that number into a string that contains "raindrop sounds" corresponding to certain potential factors. A factor is a number that evenly divides into another number, leaving no remainder. The simplest way to test if one number is a factor of another is to use the modulo operator.
 
+Here are the rules for csRaindrop. If the input number:
+has 3 as a factor, add "Pling" to the result.
+has 5 as a factor, add "Plang" to the result.
+has 7 as a factor, add "Plong" to the result.
+does not have any of 3, 5, or 7 as a factor, the result should be the digits of the input number.
+
+Examples:
+csRaindrops(28) -> "Plong"
+28 has 7 as a factor, but not 3 or 5.
+csRaindrops(30) -> "PlingPlang"
+30 has both 3 and 5 as factors, but not 7.
+csRaindrops(34) -> "34"
+34 is not factored by 3, 5, or 7.
 *********** CODE ***************
 
-
+def csRaindrops(number):
+    output_string = ""
+    has_3_factor = output_string + "Pling"
+    if number % 3 == 0:
+        output_string += "Pling"
+    elif number % 5 == 0:
+        output_string += "Plang"
+    elif number % 7 == 0:
+        output_string += "Plong"
+    elif output_string is "":
+        output_string += str(number)
+    return output_string
 
 *********** CODE ***************
 
