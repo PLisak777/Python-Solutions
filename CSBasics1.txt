@@ -611,10 +611,238 @@ def csRaindrops(number):
     return output_string
 
 *********** CODE ***************
+You are given a non-empty array of integers.
+One element appears exactly once, with every other element appearing at least twice, perhaps more.
+Write a function that can find and return the element that appears exactly once
+
+Example 1:
+Input: [1,1,2,1]
+Output: 2
+
+Example 2:
+Input: [1,2,1,2,1,2,80]
+Output: 80
+Note: You should be able to develop a solution that has O(n) time complexity.
+*********** CODE ***************
+
+from collections import defaultdict
+
+def csFindTheSingleNumber(nums):
+    hash_table = defaultdict(int)
+    for i in nums:
+        hash_table[i] += 1
+    for i in hash_table:
+        if hash_table[i] == 1:
+            return i
+
+*********** CODE ***************
+Given a list of different students' scores, write a function that returns the average of each student's top five scores. You should return the averages in ascending order of the students' id numbers.
+Each entry (scores[i]) has the student's id number (scores[i][0]) and the student's score (scores[i][1]). The averages should be calculated using integer division.
+
+Example 1:
+
+Input: [[1,91],[1,92],[2,93],[2,97],[1,60],[2,77],[1,65],[1,87],[1,100],[2,100],[2,76]]
+Output: [[1,87],[2,88]]
+Explanation:
+The average student `1` is `87`.
+The average of student `2` is `88.6`, but with integer division is `88`.
+
+*********** CODE ***************
+
+import math
+
+def csAverageOfTopFive(scores):
+    students = {}
+    answer = []
+    
+    for s in scores:
+        if s[0] not in students:
+            students[s[0]] = []
+        students[s[0]].append(s[1])
+    for stud in students:
+        stud = students[stud].sort()    
+    for stu in students:
+        if len(students[stu]) > 5:
+            students[stu] = students[stu][-5:]
+    for st in students:
+        students[st] = math.floor(sum(students[st]) / len(students[st]))
+    for key, value in students.items():
+        answer.append([key, value])
+    return answer
+
+*********** CODE ***************
+Given a string text, you need to use the characters of text to form as many instances of the word "lambda" as possible.
+You can use each character in text at most once.
+Write a function that returns the maximum number of instances of "lambda" that can be formed.
+
+Example 1:
+Input: text = "mbxcdatlas"
+Output: 1
+
+Example 2:
+Input: text = "lalaaxcmbdtsumbdav"
+Output: 2
+
+Example 3:
+Input: text = "sctlamb"
+Output: 0
+
+Notes:
+text consists of lowercase English characters only
+*********** CODE ***************
+
+def csMaxNumberOfLambdas(text):
+    sub_string = "lambda"
+    lambda_count = {'l': 0, 'a': 0, 'm': 0, 'b': 0, 'd': 0, 'a': 0}
+    counts = []
+    for letter in text:
+        if letter in lambda_count:
+            lambda_count[letter] += 1
+    for key, value in lambda_count.items():
+        counts.append(value)
+    return min(counts)
+
+*********** CODE ***************
+
+*********** CODE ***************
 
 *********** CODE ***************
 
 
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
+
+*********** CODE ***************
+
+
+
+*********** CODE ***************
 
 *********** CODE ***************
 
