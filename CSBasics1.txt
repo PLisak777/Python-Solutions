@@ -829,6 +829,108 @@ class Solution:
         return res
 
 *********** CODE ***************
+Given two strings a and b, determine if they are isomorphic.
+
+Two strings are isomorphic if the characters in a can be replaced to get b.
+
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.
+
+Example 1:
+
+Input: 
+a = "odd"
+b = "egg"
+
+Output:
+true
+Example 2:
+
+*********** CODE ***************
+def csIsomorphicStrings(a, b):
+    dict_a = {}
+    dict_b = {}
+    
+    for i, value in enumerate(a):
+        dict_a[value] = dict_a.get(value, []) + [i]
+            
+    for j, value in enumerate(b):
+        dict_b[value] = dict_b.get(value, []) + [j]
+    
+    if sorted(dict_a.values()) == sorted(dict_b.values()):
+        return True
+    else:
+        return False
+
+*********** CODE ***************
+Given a pattern and a string a, find if a follows the same pattern.
+
+Here, to "follow" means a full match, such that there is a one-to-one correspondence between a letter in pattern and a non-empty word in a.
+
+Example 1:
+Input:
+pattern = "abba"
+a = "lambda school school lambda"
+Output: true
+
+Example 2:
+Input:
+pattern = "abba"
+a = "lambda school school coding"
+Output:
+false
+*********** CODE ***************
+
+def csWordPattern(pattern, a):
+    dict_1 = {}
+    dict_2 = {}
+    words = a.split(' ')
+    if len(words) != len(pattern):
+        return False
+    for (word, ch) in zip(words, pattern):
+        if word not in dict_1 and ch not in dict_2:
+            dict_1[word] = ch
+            dict_2[ch] = word
+        elif dict_1.get(word) == ch and dict_2.get(ch) == word:
+            pass
+        else:
+            return False
+    return True
+
+*********** CODE ***************
+Given an array of strings strs, write a function that can group the anagrams. The groups should be ordered such that the larger groups come first, with subsequent groups ordered in descending order.
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+Example 1:
+Input:
+strs = ["apt","pat","ear","tap","are","arm"]
+Output:
+[["apt","pat","tap"],["ear","are"],["arm"]]
+
+Example 2:
+Input:
+strs = [""]
+Output:
+[[""]]
+
+Example 3:
+Input:
+strs = ["a"]
+Output:
+[["a"]]
+
+Notes:
+strs[i] consists of lower-case English letters.
+*********** CODE ***************
+
+def csGroupAnagrams(strs):
+    anagrams = {}
+    for word in strs:
+        sortedWord = "".join(sorted(word))
+        if sortedWord in anagrams:
+            anagrams[sortedWord].append(word)
+        else:
+            anagrams[sortedWord] = [word]
+    return list(anagrams.values())
 
 *********** CODE ***************
 
@@ -846,17 +948,13 @@ class Solution:
 
 *********** CODE ***************
 
-*********** CODE ***************
-
-
-
-*********** CODE ***************
-
-*********** CODE ***************
-
 
 
 *********** CODE ***************
+
+*********** CODE ***************
+
+
 
 *********** CODE ***************
 
@@ -874,17 +972,13 @@ class Solution:
 
 *********** CODE ***************
 
-*********** CODE ***************
-
-
-
-*********** CODE ***************
-
-*********** CODE ***************
-
 
 
 *********** CODE ***************
+
+*********** CODE ***************
+
+
 
 *********** CODE ***************
 
@@ -902,17 +996,13 @@ class Solution:
 
 *********** CODE ***************
 
-*********** CODE ***************
-
-
-
-*********** CODE ***************
-
-*********** CODE ***************
-
 
 
 *********** CODE ***************
+
+*********** CODE ***************
+
+
 
 *********** CODE ***************
 
@@ -930,17 +1020,7 @@ class Solution:
 
 *********** CODE ***************
 
-*********** CODE ***************
 
-
-
-*********** CODE ***************
-
-*********** CODE ***************
-
-
-
-*********** CODE ***************
 
 *********** CODE ***************
 
@@ -953,8 +1033,6 @@ class Solution:
 *********** CODE ***************
 
 
-
-*********** CODE ***************
 
 *********** CODE ***************
 
