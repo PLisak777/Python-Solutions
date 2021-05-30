@@ -1117,16 +1117,41 @@ def csSearchRotatedSortedArray(nums, target):
     return -1
 
 *********** CODE ***************
+Two words are blanagrams if they are anagrams but exactly one letter has been substituted for another.
+Given two words, check if they are blanagrams of each other.
 
+Example
+For word1 = "tangram" and word2 = "anagram", the output should be
+checkBlanagrams(word1, word2) = true;
+After changing the first letter 't' to 'a' in the word1, the words become anagrams.
 *********** CODE ***************
 
+from collections import Counter
 
+def checkBlanagrams(word1, word2):
+    ct1, ct2 = Counter(word1), Counter(word2)
+    return sum((ct1 - ct2).values()) == 1 and sum((ct2 - ct1).values()) == 1
 
 *********** CODE ***************
+You are given a sorted array in ascending order that is rotated at some unknown pivot (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]) and a target value.
+Write a function that returns the target value's index. If the target value is not present in the array, return -1.
+You may assume no duplicate exists in the array.
+Your algorithm's runtime complexity must be in the order of O(log n).
 
+Example 1:
+Input: nums = [4,5,6,7,0,1,2], target = 0
+Output: 4
+
+Example 2:
+Input: nums = [4,5,6,7,0,1,2], target = 3
+Output: -1
 *********** CODE ***************
 
-
+def findValueSortedShiftedArray(nums, target):
+    for i in range(len(nums)):
+        if nums[i] == target:
+            return i
+    return -1
 
 *********** CODE ***************
 
