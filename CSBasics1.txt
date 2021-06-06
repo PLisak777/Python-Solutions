@@ -1364,18 +1364,93 @@ class MyStack:
         """
         return len(self.queue) == 0
 
+*********** CODE ***************
+Implement a queue using two stacks.
 
+You are given an array of requests, where requests[i] can be "push <x>" or "pop". Return an array composed of the results of each "pop" operation that is performed.
+
+Example
+
+For requests = ["push 1", "push 2", "pop", "push 3", "pop"], the output should be
+queueOnStacks(requests) = [1, 2].
+
+After the first request, the queue is {1}; after the second it is {1, 2}. Then we do the third request, "pop", and add the first element of the queue 1 to the answer array. The queue becomes {2}. After the fourth request, the queue is {2, 3}. Then we perform "pop" again and add 2 to the answer array, and the queue becomes {3}.
 *********** CODE ***************
 
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def isEmpty(self):
+        return self.items == []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        return self.items.pop()
+
+def queueOnStacks(requests):
+    left = Stack()
+    right = Stack()
+
+    def insert(x):
+        left.push(x)
+
+    def remove():
+        while not left.isEmpty():
+            ele = left.pop()
+            right.push(ele)
+        item = right.pop()
+        
+        while not right.isEmpty():
+            element = right.pop()
+            left.push(element)
+        return item
+        
+    ans = []
+    for request in requests:
+        req = request.split(" ")
+        if req[0] == 'push':
+            insert(int(req[1]))
+        else:
+            ans.append(remove())
+    return ans
+
+*********** CODE ***************
+Given a string sequence consisting of the characters '(', ')', '[', ']', '{', and '}'. Your task is to determine whether or not the sequence is a valid bracket sequence.
+The Valid bracket sequence is defined in the following way:
+An empty bracket sequence is a valid bracket sequence.
+If S is a valid bracket sequence then (S), [S] and {S} are also valid.
+If A and B are valid bracket sequences then AB is also valid.
+
+Example
+For sequence = "()", the output should be validBracketSequence(sequence) = true;
+For sequence = "()[]{}", the output should be validBracketSequence(sequence) = true;
+For sequence = "(]", the output should be validBracketSequence(sequence) = false;
+For sequence = "([)]", the output should be validBracketSequence(sequence) = false;
+For sequence = "{[]}", the output should be validBracketSequence(sequence) = true.
 *********** CODE ***************
 
-
-
-*********** CODE ***************
-
-*********** CODE ***************
-
-
+def validBracketSequence(sequence):
+    openList = ["(", "[", "{"]
+    closedList = [")", "]", "}"]
+    newList = []
+    
+    for i in sequence:
+        if i in openList:
+            newList.append(i)
+        elif i in closedList:
+            pos = closedList.index(i)
+            if ((len(newList) > 0) and 
+                (openList[pos] == newList[len(newList) - 1])):
+                newList.pop()
+            else:
+                return False
+    if len(newList) == 0:
+        return True
+    else:
+        return False 
 
 *********** CODE ***************
 
