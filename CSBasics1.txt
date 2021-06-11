@@ -1525,22 +1525,170 @@ def minimumDepthBinaryTree(root):
     return min(minimumDepthBinaryTree(root.left), minimumDepthBinaryTree(root.right)) + 1
 
 *********** CODE ***************
+You are given a binary tree. Write a function that returns the binary tree's node values using an in-order traversal.
 
+Example:
+Input: [2,None,3,4]
+
+   2
+    \
+     3
+    /
+   4
 *********** CODE ***************
 
-
+#
+# Binary trees are already defined with this interface:
+# class Tree(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.left = None
+#     self.right = None
+def binaryTreeInOrderTraversal(root):
+    res = []
+    if root:
+        res = binaryTreeInOrderTraversal(root.left)
+        res.append(root.value)
+        res = res + binaryTreeInOrderTraversal(root.right)
+    return res
 
 *********** CODE ***************
+Note: Try to solve this task without using recursion, since this is what you'll be asked to do during an interview.
 
+Given a binary tree of integers t, return its node values in the following format:
+
+The first element should be the value of the tree root;
+The next elements should be the values of the nodes at height 1 (i.e. the root children), ordered from the leftmost to the rightmost one;
+The elements after that should be the values of the nodes at height 2 (i.e. the children of the nodes at height 1) ordered in the same way;
+Etc.
+
+Example
+For
+t = {
+    "value": 1,
+    "left": {
+        "value": 2,
+        "left": null,
+        "right": {
+            "value": 3,
+            "left": null,
+            "right": null
+        }
+    },
+    "right": {
+        "value": 4,
+        "left": {
+            "value": 5,
+            "left": null,
+            "right": null
+        },
+        "right": null
+    }
+}
+the output should be
+traverseTree(t) = [1, 2, 4, 3, 5].
+
+This t looks like this:
+
+     1
+   /   \
+  2     4
+   \   /
+    3 5
 *********** CODE ***************
 
+from collections import deque
 
+#
+# Binary trees are already defined with this interface:
+# class Tree(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.left = None
+#     self.right = None
+def traverseTree(t):
+    if t == None:
+        return []
+        
+    q = deque()
+    q.append(t)
+    res = []
+    
+    while len(q) > 0:
+        curr = q.popleft()
+        res.append(curr.value)
+        if curr.left != None:
+            q.append(curr.left)
+        if curr.right != None:
+            q.append(curr.right)
+    return res
 
 *********** CODE ***************
+Given a binary tree of integers, return all the paths from the tree's root to its leaves as an array of strings. The strings should have the following format:
+"root->node1->node2->...->noden", representing the path from root to noden, where root is the value stored in the root and node1,node2,...,noden are the values stored in the 1st, 2nd,..., and nth nodes in the path respectively (noden representing the leaf).
 
+Example
+For
+t = {
+    "value": 5,
+    "left": {
+        "value": 2,
+        "left": {
+            "value": 10,
+            "left": null,
+            "right": null
+        },
+        "right": {
+            "value": 4,
+            "left": null,
+            "right": null
+        }
+    },
+    "right": {
+        "value": -3,
+        "left": null,
+        "right": null
+    }
+}
+the output should be
+treePaths(t) = ["5->2->10", "5->2->4", "5->-3"].
+
+The given tree looks like this:
+
+    5
+   / \
+  2  -3
+ / \
+10  4
 *********** CODE ***************
 
-
+#
+# Binary trees are already defined with this interface:
+# class Tree(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.left = None
+#     self.right = None
+def treePaths(t):
+    if t == None:
+        return []
+        
+    res = []
+    currPath = ""
+    treeHelper(t, res, currPath)
+    return res
+    
+def treeHelper(root, res, currPath):
+    currPath += f"{root.value}"
+    if root.left == None and root.right == None:
+        res.append(currPath)
+        return
+    if root.left != None:
+        newPath = currPath + "->"
+        treeHelper(root.left, res, newPath)
+    if root.right != None:
+        newPath = currPath + "->"
+        treeHelper(root.right, res, newPath)
 
 *********** CODE ***************
 
