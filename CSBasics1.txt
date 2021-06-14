@@ -1691,16 +1691,67 @@ def treeHelper(root, res, currPath):
         treeHelper(root.right, res, newPath)
 
 *********** CODE ***************
+Note: Your solution should have O(l.length) time complexity and O(1) space complexity, since this is what you will be asked to accomplish in an interview.
+
+Given a singly linked list, reverse and return it.
+
+Example
+For l = [1, 2, 3, 4, 5], the output should be
+reverseLinkedList(l) = [5, 4, 3, 2, 1].
 
 *********** CODE ***************
 
-
+# Singly-linked lists are already defined with this interface:
+# class ListNode(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.next = None
+#
+def reverseLinkedList(l):
+    prev_node = None
+    curr_node = l
+    while curr_node:
+        next_node = curr_node.next 
+        curr_node.next = prev_node  
+        prev_node = curr_node  
+        curr_node = next_node  
+    l = prev_node
+    return l
 
 *********** CODE ***************
+You are given the root node of a binary search tree (BST).
+You need to write a function that returns the sum of values of all the nodes with a value between lower and upper (inclusive).
+The BST is guaranteed to have unique values.
 
+Example 1:
+Input:
+root = [10, 5, 15, 3, 7, null, 18]
+lower = 7
+upper = 15
+
+         10
+         / \
+        5  15
+       / \    \
+      3   7    18
+
+Output:
+32
 *********** CODE ***************
 
-
+def csBSTRangeSum(root, lower, upper):
+    l = []
+    
+    def inOrder(root):
+        if not root:
+            return
+        inOrder(root.left)
+        if lower <= root.value <= upper:
+            l.append(root.value)
+        inOrder(root.right)
+        
+    inOrder(root)
+    return sum(l)
 
 *********** CODE ***************
 
