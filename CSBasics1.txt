@@ -209,11 +209,11 @@ If the input_arr does not contain any positive integers, the default sum should 
 *********** CODE ***************
 
 def csSumOfPositive(input_arr):
-    runningTotal = 0
-    for x in input_arr:
-        if x > 0:
-            runningTotal = runningTotal + x
-    return runningTotal
+    counts = 0
+    for i in input_arr:
+        if i > 0:
+            counts = counts + i
+    return counts
 
 *********** CODE ***************
 
@@ -226,8 +226,8 @@ The input string will never be empty and you do not need to validate for differe
 *********** CODE ***************
 
 def csShortestWord(input_str):
-    x = list(map(len, input_str.split()))
-    return min(x)
+    word = map(len, input_str.split())
+    return min(word)
 
 *********** CODE ***************
 
