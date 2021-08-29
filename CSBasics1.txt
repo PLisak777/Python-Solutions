@@ -1804,22 +1804,90 @@ def csSortedTwoSum(numbers, target):
         d[num] = i
 
 *********** CODE ***************
+Given a linked list of integers, remove any nodes from the linked list that have values that have previously occurred in the linked list. Your function should return a reference to the head of the updated linked list.
 
+Example:
+Input: (3) -> (4) -> (3) -> (2) -> (6) -> (1) -> (2) -> (6) -> N
+Output: (3) -> (4) -> (2) -> (6) -> (1) -> N
+Explanation: The input list contains redundant nodes (3), (6), and (2), so those should be removed from the list.
 *********** CODE ***************
 
-
+def remove_node(current, prev):
+    prev.next = current.next
+    return prev
+    
+def condense_linked_list(node):
+    s = set()
+    s.add(node.value)
+    
+    current = node.next
+    prev = node
+    
+    while current:
+        if current.value in s:
+            current = remove_node(current, prev)  
+        else:
+            s.add(current.value)
+            
+        prev = current
+        current = current.next
+        
+    return node
 
 *********** CODE ***************
+Given a string s consisting of small English letters, find and return the first instance of a non-repeating character in it. If there is no such character, return '_'.
 
+Example
+
+For s = "abacabad", the output should be
+first_not_repeating_character(s) = 'c'.
+
+There are 2 non-repeating characters in the string: 'c' and 'd'. Return c since it appears in the string first.
+
+For s = "abacabaabacaba", the output should be
+first_not_repeating_character(s) = '_'.
+
+There are no characters in this string that do not repeat.
 *********** CODE ***************
 
-
+def first_not_repeating_character(s):
+    res = '_'
+    d = {}
+    
+    for i, j in enumerate(s):
+        if j in d.keys():
+            d[j] = -1
+        else:
+            d[j] = i
+    min_key = len(s) + 1
+    for k in d.keys():
+        if d[k] >= 0:
+            min_key = min(min_key, d[k])
+            res = s[min_key]
+    return res
 
 *********** CODE ***************
+In a city-state of n people, there is a rumor going around that one of the n people is a spy for the neighboring city-state.
 
+The spy, if it exists:
+
+Does not trust anyone else.
+Is trusted by everyone else (he's good at his job).
+Works alone; there are no other spies in the city-state.
+You are given a list of pairs, trust. Each trust[i] = [a, b] represents the fact that person a trusts person b.
+
+If the spy exists and can be found, return their identifier. Otherwise, return -1.
 *********** CODE ***************
 
-
+def uncover_spy(n, trust):
+    trusted = [0] * (n + 1)
+    for a, b in trust:
+        trusted[a] -= 1
+        trusted[b] += 1
+    for i in range(1, n + 1):
+        if trusted[i] == n - 1:
+            return i
+    return -1
 
 *********** CODE ***************
 
